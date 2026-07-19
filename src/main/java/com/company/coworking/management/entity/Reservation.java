@@ -1,8 +1,8 @@
 package com.company.coworking.management.entity;
 
 import com.company.coworking.management.common.auditing.AuditableEntity;
-import com.company.coworking.management.enums.PaymentMethod;
-import com.company.coworking.management.enums.ReservationStatus;
+import com.company.coworking.management.util.enums.PaymentMethod;
+import com.company.coworking.management.util.enums.ReservationStatus;
 import jakarta.persistence.*;
 import lombok.*;
 

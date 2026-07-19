@@ -1,4 +1,4 @@
-package com.company.coworking.management.enums;
+package com.company.coworking.management.util.enums;
 
 public enum ReservationStatus {
     PENDING,

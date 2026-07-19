@@ -3,9 +3,11 @@ package com.company.coworking.management.security.config;
 import com.company.coworking.management.security.JwtAuthenticationEntryPoint;
 import com.company.coworking.management.security.jwt.JwtAuthenticationFilter;
 import com.company.coworking.management.security.service.CustomUserDetailsService;
+import com.company.coworking.management.util.enums.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -34,10 +36,9 @@ public class SecurityConfig {
                 )
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**").permitAll()
-                        .requestMatchers("/swagger-ui/**").permitAll()
-                        .requestMatchers("/swagger-ui.html").permitAll()
-                        .requestMatchers("/v3/api-docs/**").permitAll()
+                        .requestMatchers("/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**").permitAll()
                         .requestMatchers("/actuator/health").permitAll()
+                        .requestMatchers("/space/**").hasRole(Role.ADMIN.name())
                         .anyRequest().authenticated()
                 )
                 .userDetailsService(customUserDetailsService)

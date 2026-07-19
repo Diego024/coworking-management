@@ -1,4 +1,4 @@
-package com.company.coworking.management.security.dto.response;
+package com.company.coworking.management.dto.response;
 
 import lombok.*;
 

@@ -1,4 +1,4 @@
-package com.company.coworking.management.security.dto.request;
+package com.company.coworking.management.dto.request;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

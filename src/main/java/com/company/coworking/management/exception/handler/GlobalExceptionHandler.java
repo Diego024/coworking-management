@@ -3,6 +3,7 @@ package com.company.coworking.management.exception.handler;
 import com.company.coworking.management.dto.response.GeneralResponseWithErrors;
 import com.company.coworking.management.dto.response.ResponseBuilder;
 import com.company.coworking.management.exception.business.EmailAlreadyExistsException;
+import com.company.coworking.management.exception.business.SpaceNotFoundException;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
@@ -42,6 +43,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<GeneralResponseWithErrors> handleHttpMessageNotReadableException(HttpMessageNotReadableException e) {
+        log.info(e.getMessage());
         return ResponseBuilder.buildBadRequestResponse("Invalid request body.");
     }
 
@@ -59,5 +61,10 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = EmailAlreadyExistsException.class)
     public ResponseEntity<GeneralResponseWithErrors> handleEmailAlreadyExistsException(EmailAlreadyExistsException e) {
         return ResponseBuilder.buildConflictResponse(e.getMessage());
+    }
+
+    @ExceptionHandler(value = SpaceNotFoundException.class)
+    public ResponseEntity<GeneralResponseWithErrors> handleSpaceNotFoundException(SpaceNotFoundException e) {
+        return ResponseBuilder.buildNotFoundResponse(e.getMessage());
     }
 }

@@ -1,7 +1,7 @@
 package com.company.coworking.management.entity;
 
 import com.company.coworking.management.common.auditing.AuditableEntity;
-import com.company.coworking.management.enums.SpaceType;
+import com.company.coworking.management.util.enums.SpaceType;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -29,6 +29,12 @@ public class Space extends AuditableEntity {
     @Enumerated(EnumType.STRING)
     @Column(name = "TYPE", nullable = false, length = 30)
     private SpaceType type;
+
+    @Column(name = "CAPACITY", nullable = false)
+    private Integer capacity;
+
+    @Column(name = "LOCATION", nullable = false)
+    private String location;
 
     @Column(name = "HOURLY_RATE", nullable = false, precision = 10, scale = 2)
     private BigDecimal hourlyRate;

@@ -46,6 +46,18 @@ public class ResponseBuilder {
         return buildResponse(message, HttpStatus.ACCEPTED, null);
     }
 
+    public static ResponseEntity<GeneralResponse> buildSuccessResponse(Object data) {
+        return buildResponse(HttpStatus.OK.getReasonPhrase(), HttpStatus.OK, data);
+    }
+
+    public static ResponseEntity<GeneralResponse> buildSuccessResponse(String message) {
+        return buildResponse(message, HttpStatus.OK, null);
+    }
+
+    public static ResponseEntity<GeneralResponse> buildCreatedResponse(Object data) {
+        return buildResponse(HttpStatus.CREATED.getReasonPhrase(), HttpStatus.CREATED, data);
+    }
+
     public static ResponseEntity<GeneralResponseWithErrors> buildNotFoundResponse(String message) {
         return buildErrorResponse(HttpStatus.NOT_FOUND, message);
     }
