@@ -69,4 +69,8 @@ public class ResponseBuilder {
     public static ResponseEntity<GeneralResponseWithErrors> buildBadRequestResponse(String errors) {
         return buildErrorResponse(HttpStatus.BAD_REQUEST, errors);
     }
+
+    public static ResponseEntity<GeneralResponseWithErrors> buildUnauthorizedResponse(String message) {
+        return buildErrorResponse(HttpStatus.UNAUTHORIZED, message);
+    }
 }

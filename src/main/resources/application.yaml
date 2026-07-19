@@ -10,7 +10,6 @@ spring:
           time_zone: America/El_Salvador
   jackson:
     time-zone: America/El_Salvador
-
   profiles:
     default: dev
 
@@ -33,3 +32,8 @@ logging:
     org.hibernate.SQL: DEBUG
     org.flywaydb: INFO
     com.company: DEBUG
+
+security:
+  jwt:
+    secret: 1c9a14f7c25e69c73f0ab4d7bc5ab83b0b1cb4fcb5eb8d08f9e4f98bbd9c0d6b
+    expiration: 86400000

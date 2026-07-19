@@ -1,9 +1,9 @@
 CREATE TABLE RESERVATION
 (
-    ID             BIGINT,
+    ID             BIGINT GENERATED ALWAYS AS IDENTITY,
 
-    USER_ID        BIGINT        NOT NULL,
-    SPACE_ID       BIGINT        NOT NULL,
+    USER_ID        BIGINT         NOT NULL,
+    SPACE_ID       BIGINT         NOT NULL,
     START_TIME     TIMESTAMP      NOT NULL,
     END_TIME       TIMESTAMP      NOT NULL,
     STATUS         VARCHAR(30)    NOT NULL,
