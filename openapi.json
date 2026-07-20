@@ -1,0 +1,810 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "API de Gestión de Espacios de Coworking",
+    "description": "Documentación de la API para Autenticación, Gestión de Espacios, Reservas y Reportes.",
+    "version": "1.0.0"
+  },
+  "tags": [
+    {
+      "name": "Authentication",
+      "description": "Endpoints para el registro y autenticación de usuarios."
+    },
+    {
+      "name": "Space",
+      "description": "Endpoints para la gestión de espacios."
+    },
+    {
+      "name": "Reservations",
+      "description": "Endpoints for managing coworking space reservations"
+    },
+    {
+      "name": "Space Reports",
+      "description": "Reportes de los espacios."
+    }
+  ],
+  "paths": {
+    "/auth/register": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Registrar un nuevo usuario",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Registro exitoso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthenticationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error de validación (Bad Request)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponseWithErrors"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": [
+          "Authentication"
+        ],
+        "summary": "Iniciar sesión",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Autenticación exitosa",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AuthenticationResponse"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Credenciales inválidas (Unauthorized)",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponseWithErrors"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/space": {
+      "post": {
+        "tags": [
+          "Space"
+        ],
+        "summary": "Crear un nuevo espacio",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateSpaceRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Espacio creado exitosamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Error de validación",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponseWithErrors"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Space"
+        ],
+        "summary": "Obtener todos los espacios",
+        "responses": {
+          "200": {
+            "description": "Lista de espacios",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/space/{id}": {
+      "get": {
+        "tags": [
+          "Space"
+        ],
+        "summary": "Obtener un espacio por ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Detalles del espacio",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Espacio no encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponseWithErrors"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Space"
+        ],
+        "summary": "Actualizar un espacio",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditSpaceRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Espacio actualizado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Espacio no encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponseWithErrors"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Space"
+        ],
+        "summary": "Eliminar un espacio",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Espacio eliminado exitosamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Espacio no encontrado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponseWithErrors"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reservation": {
+      "post": {
+        "tags": [
+          "Reservations"
+        ],
+        "summary": "Create a new reservation",
+        "description": "Creates a reservation executing validations and payment processing",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateReservationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Reserva creada exitosamente",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Pago rechazado o duración inválida",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponseWithErrors"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "El espacio ya está reservado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponseWithErrors"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Reservations"
+        ],
+        "summary": "Get current user reservations",
+        "description": "Returns all reservations belonging to the authenticated user.",
+        "responses": {
+          "200": {
+            "description": "Lista de reservas del usuario",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reservation/all": {
+      "get": {
+        "tags": [
+          "Reservations"
+        ],
+        "summary": "Get all reservations",
+        "description": "Returns all reservations. ADMIN only.",
+        "responses": {
+          "200": {
+            "description": "Lista de todas las reservas",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reservation/{reservationId}/cancel": {
+      "patch": {
+        "tags": [
+          "Reservations"
+        ],
+        "summary": "Cancel reservation",
+        "description": "Cancels a reservation owned by the authenticated user. ADMIN can cancel any reservation.",
+        "parameters": [
+          {
+            "name": "reservationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Reserva cancelada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Reserva no encontrada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponseWithErrors"
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "La reserva no puede ser cancelada",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponseWithErrors"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/reports/spaces/occupancy": {
+      "get": {
+        "tags": [
+          "Space Reports"
+        ],
+        "summary": "Space occupancy report",
+        "parameters": [
+          {
+            "name": "startDate",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time",
+              "example": "2026-07-22T00:00:00"
+            }
+          },
+          {
+            "name": "endDate",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time",
+              "example": "2026-07-22T00:00:00"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Reporte de ocupación generado",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Rango de fechas inválido",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GeneralResponseWithErrors"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "PaymentMethod": {
+        "type": "string",
+        "enum": [
+          "CREDIT_CARD",
+          "DEBIT_CARD",
+          "BANK_TRANSFER"
+        ]
+      },
+      "ReservationStatus": {
+        "type": "string",
+        "enum": [
+          "PENDING_PAYMENT",
+          "CONFIRMED",
+          "CANCELLED",
+          "COMPLETED"
+        ]
+      },
+      "Role": {
+        "type": "string",
+        "enum": [
+          "ADMIN",
+          "USER"
+        ]
+      },
+      "SpaceType": {
+        "type": "string",
+        "enum": [
+          "DESK",
+          "MEETING_ROOM",
+          "AUDITORIUM"
+        ]
+      },
+      "GeneralResponse": {
+        "type": "object",
+        "description": "Respuesta estándar de la API.",
+        "properties": {
+          "uri": {
+            "type": "string",
+            "description": "URI del recurso solicitado.",
+            "example": "http://localhost:8080/api/v1/balance/process-transaction"
+          },
+          "message": {
+            "type": "string",
+            "description": "Mensaje descriptivo de la operación.",
+            "example": "Transacción recibida correctamente."
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32",
+            "description": "Código HTTP de la respuesta.",
+            "example": 202
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Fecha y hora de generación de la respuesta."
+          },
+          "data": {
+            "type": "object",
+            "description": "Información adicional de la respuesta."
+          }
+        }
+      },
+      "GeneralResponseWithErrors": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/GeneralResponse"
+          },
+          {
+            "type": "object",
+            "description": "Respuesta utilizada cuando ocurre uno o varios errores.",
+            "properties": {
+              "errors": {
+                "type": "array",
+                "description": "Lista de errores encontrados",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ]
+      },
+      "RegisterRequest": {
+        "type": "object",
+        "required": [
+          "firstName",
+          "lastName",
+          "email",
+          "password",
+          "role"
+        ],
+        "properties": {
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "password": {
+            "type": "string"
+          },
+          "role": {
+            "$ref": "#/components/schemas/Role",
+            "description": "Rol del usuario"
+          }
+        }
+      },
+      "LoginRequest": {
+        "type": "object",
+        "required": [
+          "email",
+          "password"
+        ],
+        "properties": {
+          "email": {
+            "type": "string",
+            "format": "email"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "AuthenticationResponse": {
+        "type": "object",
+        "properties": {
+          "user": {
+            "type": "string"
+          },
+          "accessToken": {
+            "type": "string"
+          },
+          "expiresIn": {
+            "type": "integer",
+            "format": "int64"
+          }
+        }
+      },
+      "CreateSpaceRequest": {
+        "type": "object",
+        "required": [
+          "name",
+          "spaceType",
+          "capacity",
+          "location",
+          "hourlyRate"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "spaceType": {
+            "$ref": "#/components/schemas/SpaceType"
+          },
+          "capacity": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 1
+          },
+          "location": {
+            "type": "string"
+          },
+          "hourlyRate": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "EditSpaceRequest": {
+        "type": "object",
+        "required": [
+          "name",
+          "spaceType",
+          "capacity",
+          "location",
+          "hourlyRate"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "spaceType": {
+            "$ref": "#/components/schemas/SpaceType"
+          },
+          "capacity": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 1
+          },
+          "location": {
+            "type": "string"
+          },
+          "hourlyRate": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      },
+      "CreateReservationRequest": {
+        "type": "object",
+        "required": [
+          "spaceId",
+          "startTime",
+          "endTime",
+          "paymentMethod"
+        ],
+        "properties": {
+          "spaceId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "startTime": {
+            "type": "string",
+            "example": "2023-10-25 14:30",
+            "description": "Fecha y hora de inicio (Formato yyyy-MM-dd HH:mm)"
+          },
+          "endTime": {
+            "type": "string",
+            "example": "2023-10-25 16:30",
+            "description": "Fecha y hora de fin (Formato yyyy-MM-dd HH:mm)"
+          },
+          "paymentMethod": {
+            "$ref": "#/components/schemas/PaymentMethod"
+          }
+        }
+      },
+      "ReservationResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "user": {
+            "type": "string"
+          },
+          "spaceName": {
+            "type": "string"
+          },
+          "totalPrice": {
+            "type": "number",
+            "format": "double"
+          },
+          "status": {
+            "$ref": "#/components/schemas/ReservationStatus"
+          },
+          "startTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "endTime": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "SpaceResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "name": {
+            "type": "string"
+          },
+          "spaceType": {
+            "$ref": "#/components/schemas/SpaceType"
+          },
+          "capacity": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "location": {
+            "type": "string"
+          },
+          "hourlyRate": {
+            "type": "number",
+            "format": "double"
+          },
+          "reservations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ReservationResponse"
+            }
+          }
+        }
+      },
+      "SpaceOccupancyReportResponse": {
+        "type": "object",
+        "properties": {
+          "spaceId": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "spaceName": {
+            "type": "string"
+          },
+          "spaceType": {
+            "$ref": "#/components/schemas/SpaceType"
+          },
+          "hourlyRate": {
+            "type": "number",
+            "format": "double"
+          },
+          "occupancyPercentage": {
+            "type": "number",
+            "format": "double"
+          }
+        }
+      }
+    }
+  }
+}
