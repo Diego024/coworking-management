@@ -2,7 +2,6 @@ package com.company.coworking.management.pipeline.reservation;
 
 import com.company.coworking.management.pipeline.reservation.context.CreateReservationContext;
 import com.company.coworking.management.pipeline.reservation.step.*;
-import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;
 
@@ -20,8 +19,8 @@ public class ReservationPipeline {
             ValidateReservationStep validateReservationStep,
             CalculateReservationPriceStep calculateReservationPriceStep,
             ValidatePaymentStep validatePaymentStep,
-            CreateReservationStep createReservationStep
-//            PublishReservationEventStep publishReservationEventStep
+            CreateReservationStep createReservationStep,
+            PublishReservationEventStep publishReservationEventStep
     ) {
         this.steps = List.of(
                 loadUserStep,
@@ -29,8 +28,8 @@ public class ReservationPipeline {
                 validateReservationStep,
                 calculateReservationPriceStep,
                 validatePaymentStep,
-                createReservationStep
-//                publishReservationEventStep
+                createReservationStep,
+                publishReservationEventStep
         );
     }
 
