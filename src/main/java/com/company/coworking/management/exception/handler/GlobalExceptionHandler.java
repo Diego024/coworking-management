@@ -2,8 +2,7 @@ package com.company.coworking.management.exception.handler;
 
 import com.company.coworking.management.dto.response.GeneralResponseWithErrors;
 import com.company.coworking.management.dto.response.ResponseBuilder;
-import com.company.coworking.management.exception.business.EmailAlreadyExistsException;
-import com.company.coworking.management.exception.business.SpaceNotFoundException;
+import com.company.coworking.management.exception.business.*;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
@@ -66,5 +65,20 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(value = SpaceNotFoundException.class)
     public ResponseEntity<GeneralResponseWithErrors> handleSpaceNotFoundException(SpaceNotFoundException e) {
         return ResponseBuilder.buildNotFoundResponse(e.getMessage());
+    }
+
+    @ExceptionHandler(value = InvalidDateRangeException.class)
+    public ResponseEntity<GeneralResponseWithErrors> handleInvalidDateRangeException(InvalidDateRangeException e) {
+        return ResponseBuilder.buildBadRequestResponse(e.getMessage());
+    }
+
+    @ExceptionHandler(value = InvalidReservationDurationException.class)
+    public ResponseEntity<GeneralResponseWithErrors> handleInvalidReservationDurationException(InvalidReservationDurationException e) {
+        return ResponseBuilder.buildBadRequestResponse(e.getMessage());
+    }
+
+    @ExceptionHandler(value = SpaceAlreadyReservedException.class)
+    public ResponseEntity<GeneralResponseWithErrors> handleSpaceAlreadyReservedException(SpaceAlreadyReservedException e) {
+        return ResponseBuilder.buildConflictResponse(e.getMessage());
     }
 }
