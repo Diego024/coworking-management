@@ -6,6 +6,8 @@ import com.company.coworking.management.entity.Reservation;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
+import java.util.List;
+
 @Mapper(config = GlobalMapperConfig.class)
 public interface ReservationMapper {
 
@@ -13,4 +15,5 @@ public interface ReservationMapper {
     @Mapping(source = "space.name", target = "spaceName")
     ReservationResponse toResponse(Reservation reservation);
 
+    List<ReservationResponse> toResponseList(List<Reservation> reservations);
 }

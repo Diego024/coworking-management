@@ -34,7 +34,6 @@ public class ReservationPipeline {
     }
 
     public void execute(CreateReservationContext context) {
-        log.info("Starting reservation pipeline for user: {}", context.getRequest().getUserId());
 
         for (ReservationStep step : steps) {
             log.debug("Executing step: {}", step.getClass().getSimpleName());

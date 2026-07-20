@@ -15,7 +15,6 @@ public class ReservationValidationChain {
     private final List<ReservationValidation> validations;
 
     public void execute(CreateReservationContext context) {
-        log.info("Starting reservation validation chain for user: {}", context.getRequest().getUserId());
 
         for (ReservationValidation validation : validations) {
             log.debug("Executing validation: {}", validation.getClass().getSimpleName());

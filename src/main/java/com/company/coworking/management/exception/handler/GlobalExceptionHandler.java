@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 
 import java.util.List;
 
@@ -58,6 +59,11 @@ public class GlobalExceptionHandler {
         return ResponseBuilder.buildInternalServerErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase());
     }
 
+    @ExceptionHandler(value = NoResourceFoundException.class)
+    public ResponseEntity<GeneralResponseWithErrors> handleNoResourceFoundException(NoResourceFoundException e) {
+        return ResponseBuilder.buildNotFoundResponse(HttpStatus.NOT_FOUND.getReasonPhrase());
+    }
+
     @ExceptionHandler(value = EmailAlreadyExistsException.class)
     public ResponseEntity<GeneralResponseWithErrors> handleEmailAlreadyExistsException(EmailAlreadyExistsException e) {
         return ResponseBuilder.buildConflictResponse(e.getMessage());
@@ -90,6 +96,16 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = SpaceAlreadyReservedException.class)
     public ResponseEntity<GeneralResponseWithErrors> handleSpaceAlreadyReservedException(SpaceAlreadyReservedException e) {
+        return ResponseBuilder.buildConflictResponse(e.getMessage());
+    }
+
+    @ExceptionHandler(ReservationNotFoundException.class)
+    public ResponseEntity<GeneralResponseWithErrors> handleReservationNotFoundException(ReservationNotFoundException e) {
+        return ResponseBuilder.buildNotFoundResponse(e.getMessage());
+    }
+
+    @ExceptionHandler(ReservationCannotBeCancelledException.class)
+    public ResponseEntity<GeneralResponseWithErrors> handleReservationAlreadyCancelledException(ReservationCannotBeCancelledException e) {
         return ResponseBuilder.buildConflictResponse(e.getMessage());
     }
 }

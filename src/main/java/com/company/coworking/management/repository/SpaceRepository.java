@@ -11,10 +11,19 @@ import java.util.Optional;
 public interface SpaceRepository extends JpaRepository<Space, Long> {
 
     @NonNull
-    @Query("SELECT DISTINCT s FROM Space s LEFT JOIN FETCH s.reservations")
+    @Query("""
+            SELECT DISTINCT s
+            FROM Space s
+            LEFT JOIN FETCH s.reservations
+            """)
     List<Space> findAll();
 
     @NonNull
-    @Query("SELECT s FROM Space s LEFT JOIN FETCH s.reservations WHERE s.id = :id")
+    @Query("""
+            SELECT s
+            FROM Space s
+            LEFT JOIN FETCH s.reservations
+            WHERE s.id = :id
+            """)
     Optional<Space> findById(@NonNull Long id);
 }

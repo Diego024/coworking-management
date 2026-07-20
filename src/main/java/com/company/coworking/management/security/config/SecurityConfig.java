@@ -36,9 +36,10 @@ public class SecurityConfig {
                 )
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**").permitAll()
+                        .requestMatchers("/actuator/**").permitAll()
                         .requestMatchers("/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**").permitAll()
-                        .requestMatchers("/actuator/health").permitAll()
                         .requestMatchers("/space/**").hasRole(Role.ADMIN.name())
+                        .requestMatchers(HttpMethod.GET, "/reservation/all").hasRole(Role.ADMIN.name())
                         .anyRequest().authenticated()
                 )
                 .userDetailsService(customUserDetailsService)
