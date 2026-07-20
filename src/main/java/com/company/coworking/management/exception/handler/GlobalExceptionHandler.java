@@ -83,6 +83,11 @@ public class GlobalExceptionHandler {
         return ResponseBuilder.buildBadRequestResponse(e.getMessage());
     }
 
+    @ExceptionHandler(value = PaymentDeclinedException.class)
+    public ResponseEntity<GeneralResponseWithErrors> handlePaymentDeclinedException(PaymentDeclinedException e) {
+        return ResponseBuilder.buildBadRequestResponse(e.getMessage());
+    }
+
     @ExceptionHandler(value = SpaceAlreadyReservedException.class)
     public ResponseEntity<GeneralResponseWithErrors> handleSpaceAlreadyReservedException(SpaceAlreadyReservedException e) {
         return ResponseBuilder.buildConflictResponse(e.getMessage());

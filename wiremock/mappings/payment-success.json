@@ -1,0 +1,17 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/api/payments/process"
+  },
+  "response": {
+    "status": 200,
+    "fixedDelayMilliseconds": 2000,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "status": "APPROVED",
+      "transactionId": "txn-{{randomValue length=10 type='ALPHANUMERIC'}}"
+    }
+  }
+}

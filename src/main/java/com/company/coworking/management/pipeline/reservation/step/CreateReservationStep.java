@@ -4,7 +4,6 @@ import com.company.coworking.management.entity.Reservation;
 import com.company.coworking.management.pipeline.reservation.context.CreateReservationContext;
 import com.company.coworking.management.repository.ReservationRepository;
 import com.company.coworking.management.service.integration.payment.PaymentValidationResult;
-import com.company.coworking.management.service.state.reservation.PendingReservationState;
 import com.company.coworking.management.util.enums.ReservationStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;

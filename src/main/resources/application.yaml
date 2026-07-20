@@ -29,11 +29,48 @@ logging:
   level:
     root: INFO
     org.springframework.web: INFO
-    org.hibernate.SQL: DEBUG
     org.flywaydb: INFO
     com.company: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info, metrics, circuitbreakers
+  endpoint:
+    health:
+      show-details: always
+  health:
+    circuitbreakers:
+      enabled: true
+
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        registerHealthIndicator: true
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        failureRateThreshold: 50
+        slowCallRateThreshold: 50
+        slowCallDurationThreshold: 5s
+        waitDurationInOpenState: 3s
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+    instances:
+      paymentService:
+        baseConfig: default
+  retry:
+    instances:
+        paymentService:
+          maxAttempts: 3
+          waitDuration: 1s
 
 security:
   jwt:
     secret: 1c9a14f7c25e69c73f0ab4d7bc5ab83b0b1cb4fcb5eb8d08f9e4f98bbd9c0d6b
     expiration: 86400000
+
+integration:
+  payment-gateway:
+    url: "http://localhost:8081/api/payments/process"

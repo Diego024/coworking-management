@@ -11,7 +11,7 @@ import org.mapstruct.MappingTarget;
 
 import java.util.List;
 
-@Mapper(config = GlobalMapperConfig.class)
+@Mapper(config = GlobalMapperConfig.class, uses = {ReservationMapper.class})
 public interface SpaceMapper {
 
     @Mapping(target = "id", ignore = true)
