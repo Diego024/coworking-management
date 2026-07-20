@@ -1,6 +1,5 @@
 package com.company.coworking.management.service.validation.reservation;
 
-import com.company.coworking.management.entity.Space;
 import com.company.coworking.management.exception.business.SpaceNotFoundException;
 import com.company.coworking.management.pipeline.reservation.context.CreateReservationContext;
 import com.company.coworking.management.repository.SpaceRepository;

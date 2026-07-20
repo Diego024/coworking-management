@@ -6,6 +6,6 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class ReservationCreatedEvent {
+public class ReservationConfirmedEvent {
     private final Reservation reservation;
 }

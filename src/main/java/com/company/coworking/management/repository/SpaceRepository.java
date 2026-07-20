@@ -15,6 +15,7 @@ public interface SpaceRepository extends JpaRepository<Space, Long> {
             SELECT DISTINCT s
             FROM Space s
             LEFT JOIN FETCH s.reservations
+            ORDER BY s.name
             """)
     List<Space> findAll();
 

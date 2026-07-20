@@ -1,15 +1,15 @@
 package com.company.coworking.management.service.impl;
 
-import com.company.coworking.management.entity.User;
-import com.company.coworking.management.exception.business.EmailAlreadyExistsException;
-import com.company.coworking.management.util.mapper.AuthenticationMapper;
-import com.company.coworking.management.repository.UserRepository;
 import com.company.coworking.management.dto.request.LoginRequest;
 import com.company.coworking.management.dto.request.RegisterRequest;
 import com.company.coworking.management.dto.response.AuthenticationResponse;
+import com.company.coworking.management.entity.User;
+import com.company.coworking.management.exception.business.EmailAlreadyExistsException;
+import com.company.coworking.management.repository.UserRepository;
 import com.company.coworking.management.security.jwt.JwtProperties;
 import com.company.coworking.management.security.service.JwtService;
 import com.company.coworking.management.service.AuthenticationService;
+import com.company.coworking.management.util.mapper.AuthenticationMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -17,6 +17,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import static com.company.coworking.management.security.jwt.JwtAuthenticationFilter.TOKEN_PREFIX;
 
@@ -33,6 +34,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     private final AuthenticationMapper authenticationMapper;
 
     @Override
+    @Transactional
     public AuthenticationResponse register(RegisterRequest request) {
         if (userRepository.findByEmail(request.getEmail()).isPresent()) {
             throw new EmailAlreadyExistsException(request.getEmail());
@@ -58,6 +60,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public AuthenticationResponse login(LoginRequest request) {
 
         authenticationManager.authenticate(

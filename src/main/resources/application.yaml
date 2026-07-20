@@ -1,6 +1,8 @@
 spring:
   application:
     name: coworking-management
+  profiles:
+    default: dev
   main:
     banner-mode: off
   jpa:
@@ -10,8 +12,9 @@ spring:
           time_zone: America/El_Salvador
   jackson:
     time-zone: America/El_Salvador
-  profiles:
-    default: dev
+  cache:
+    type: simple
+
 
 server:
   servlet:
@@ -22,7 +25,6 @@ springdoc:
     path: /v3/api-docs
   swagger-ui:
     path: /swagger-ui.html
-
 logging:
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{36} - %msg%n"
@@ -62,9 +64,9 @@ resilience4j:
         baseConfig: default
   retry:
     instances:
-        paymentService:
-          maxAttempts: 3
-          waitDuration: 1s
+      paymentService:
+        maxAttempts: 3
+        waitDuration: 1s
 
 security:
   jwt:

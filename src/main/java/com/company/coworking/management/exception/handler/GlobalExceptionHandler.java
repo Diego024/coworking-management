@@ -11,6 +11,7 @@ import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
@@ -46,6 +47,12 @@ public class GlobalExceptionHandler {
     public ResponseEntity<GeneralResponseWithErrors> handleHttpMessageNotReadableException(HttpMessageNotReadableException e) {
         log.info(e.getMessage());
         return ResponseBuilder.buildBadRequestResponse("Invalid request body.");
+    }
+
+    @ExceptionHandler(MissingServletRequestParameterException.class)
+    public ResponseEntity<GeneralResponseWithErrors> handleMissingServletRequestParameterException(MissingServletRequestParameterException e) {
+        log.info(e.getMessage());
+        return ResponseBuilder.buildBadRequestResponse("Invalid request parameter.");
     }
 
     @ExceptionHandler(value = BadCredentialsException.class)

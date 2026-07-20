@@ -15,6 +15,7 @@ import com.company.coworking.management.util.enums.ReservationStatus;
 import com.company.coworking.management.util.mapper.ReservationMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -36,8 +37,12 @@ public class ReservationServiceImpl implements ReservationService {
     private final ReservationRepository reservationRepository;
     private final CurrentUserService currentUserService;
 
-    @Transactional
     @Override
+    @Transactional
+    @CacheEvict(
+            value = "space-occupancy",
+            allEntries = true
+    )
     public ReservationResponse createReservation(CreateReservationRequest request) {
 
         CreateReservationContext context = new CreateReservationContext(request);
@@ -46,8 +51,8 @@ public class ReservationServiceImpl implements ReservationService {
         return reservationMapper.toResponse(context.getReservation());
     }
 
-    @Transactional(readOnly = true)
     @Override
+    @Transactional(readOnly = true)
     public List<ReservationResponse> getCurrentUserReservations() {
         User currentUser = currentUserService.getCurrentUser();
 
@@ -57,14 +62,18 @@ public class ReservationServiceImpl implements ReservationService {
                 .toList();
     }
 
-    @Transactional(readOnly = true)
     @Override
+    @Transactional(readOnly = true)
     public List<ReservationResponse> getAllReservations() {
         return reservationMapper.toResponseList(reservationRepository.findAllOrderByCreatedAtDesc());
     }
 
-    @Transactional
     @Override
+    @Transactional
+    @CacheEvict(
+            value = "space-occupancy",
+            allEntries = true
+    )
     public ReservationResponse cancelReservation(Long reservationId) {
         Reservation reservation;
         if (currentUserService.isAdmin()) {

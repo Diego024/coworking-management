@@ -12,12 +12,12 @@ import java.util.Optional;
 public interface ReservationRepository extends JpaRepository<Reservation, Long> {
 
     @Query("""
-            SELECT CASE WHEN COUNT(r) > 0 THEN true ELSE false END 
-                        FROM Reservation r 
-                        WHERE r.space.id = :spaceId 
-                        AND r.status != 'CANCELLED' 
-                        AND r.startTime < :endTime 
-                        AND r.endTime > :startTime
+            SELECT CASE WHEN COUNT(r) > 0 THEN true ELSE false END
+            FROM Reservation r
+            WHERE r.space.id = :spaceId
+                AND r.status <> ReservationStatus.CANCELLED
+                AND r.startTime < :endTime
+                AND r.endTime > :startTime
             """)
     boolean existsOverlappingReservation(
             @Param("spaceId") Long spaceId,
@@ -28,8 +28,8 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
     @Query("""
             SELECT r
             FROM Reservation r
-            JOIN FETCH r.user
-            JOIN FETCH r.space
+                JOIN FETCH r.user
+                JOIN FETCH r.space
             WHERE r.user.id = :userId
             ORDER BY r.createdAt DESC
             """)
@@ -38,8 +38,8 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
     @Query("""
             SELECT r
             FROM Reservation r
-            JOIN FETCH r.user
-            JOIN FETCH r.space
+                JOIN FETCH r.user
+                JOIN FETCH r.space
             WHERE r.id = :reservationId
               AND r.user.id = :userId
             """)
@@ -51,9 +51,22 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
     @Query("""
             SELECT r
             FROM Reservation r
-            JOIN FETCH r.user
-            JOIN FETCH r.space
+                JOIN FETCH r.user
+                JOIN FETCH r.space
             ORDER BY r.createdAt DESC
             """)
     List<Reservation> findAllOrderByCreatedAtDesc();
+
+    @Query("""
+            SELECT r
+            FROM Reservation r
+                JOIN FETCH r.space
+            WHERE r.status <> ReservationStatus.CANCELLED
+                AND r.startTime < :endDate
+                AND r.endTime > :startDate
+            """)
+    List<Reservation> findReservationsForOccupancyReport(
+            @Param("startDate") LocalDateTime startDate,
+            @Param("endDate") LocalDateTime endDate
+    );
 }

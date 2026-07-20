@@ -18,17 +18,17 @@ public class NotificationServiceImpl implements NotificationService {
         }
 
         log.info("""
+                        \s
                         ==========================================================
                         Reservation confirmation email sent.
                         Reservation: {}
                         User: {}
-                        Email: {}
+                        Space: {}
                         ==========================================================
                         """,
                 reservation.getId(),
-                reservation.getUser().getId(),
-                reservation.getUser().getEmail());
+                reservation.getUser().getEmail(),
+                reservation.getSpace().getName());
 
     }
-
 }
