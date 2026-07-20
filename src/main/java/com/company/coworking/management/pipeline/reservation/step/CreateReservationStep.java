@@ -3,8 +3,8 @@ package com.company.coworking.management.pipeline.reservation.step;
 import com.company.coworking.management.entity.Reservation;
 import com.company.coworking.management.pipeline.reservation.context.CreateReservationContext;
 import com.company.coworking.management.repository.ReservationRepository;
-import com.company.coworking.management.service.integration.payment.PaymentValidationResult;
-import com.company.coworking.management.util.enums.ReservationStatus;
+import com.company.coworking.management.integration.payment.dto.PaymentValidationResult;
+import com.company.coworking.management.enums.ReservationStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

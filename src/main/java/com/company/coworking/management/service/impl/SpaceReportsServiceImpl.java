@@ -7,7 +7,7 @@ import com.company.coworking.management.exception.business.InvalidDateRangeExcep
 import com.company.coworking.management.repository.ReservationRepository;
 import com.company.coworking.management.repository.SpaceRepository;
 import com.company.coworking.management.service.SpaceReportsService;
-import com.company.coworking.management.util.mapper.SpaceOccupancyMapper;
+import com.company.coworking.management.mapper.SpaceOccupancyMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.cache.annotation.Cacheable;

@@ -1,7 +1,7 @@
 package com.company.coworking.management.controller;
 
-import com.company.coworking.management.dto.response.GeneralResponse;
-import com.company.coworking.management.dto.response.ResponseBuilder;
+import com.company.coworking.management.common.response.GeneralResponse;
+import com.company.coworking.management.common.response.ResponseBuilder;
 import com.company.coworking.management.dto.response.SpaceOccupancyReportResponse;
 import com.company.coworking.management.service.SpaceReportsService;
 import lombok.RequiredArgsConstructor;

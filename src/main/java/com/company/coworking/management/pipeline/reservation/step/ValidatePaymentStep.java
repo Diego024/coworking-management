@@ -2,10 +2,10 @@ package com.company.coworking.management.pipeline.reservation.step;
 
 import com.company.coworking.management.exception.business.PaymentDeclinedException;
 import com.company.coworking.management.pipeline.reservation.context.CreateReservationContext;
-import com.company.coworking.management.service.integration.payment.PaymentGatewayClient;
-import com.company.coworking.management.service.integration.payment.PaymentValidationResult;
-import com.company.coworking.management.service.integration.payment.dto.request.PaymentValidationRequest;
-import com.company.coworking.management.util.mapper.PaymentValidationRequestMapper;
+import com.company.coworking.management.integration.payment.PaymentGatewayClient;
+import com.company.coworking.management.integration.payment.dto.PaymentValidationResult;
+import com.company.coworking.management.integration.payment.dto.PaymentValidationRequest;
+import com.company.coworking.management.mapper.PaymentValidationRequestMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 

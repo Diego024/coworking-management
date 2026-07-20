@@ -2,8 +2,8 @@ package com.company.coworking.management.controller;
 
 import com.company.coworking.management.dto.request.CreateSpaceRequest;
 import com.company.coworking.management.dto.request.EditSpaceRequest;
-import com.company.coworking.management.dto.response.GeneralResponse;
-import com.company.coworking.management.dto.response.ResponseBuilder;
+import com.company.coworking.management.common.response.GeneralResponse;
+import com.company.coworking.management.common.response.ResponseBuilder;
 import com.company.coworking.management.dto.response.SpaceResponse;
 import com.company.coworking.management.service.SpaceService;
 import jakarta.validation.Valid;

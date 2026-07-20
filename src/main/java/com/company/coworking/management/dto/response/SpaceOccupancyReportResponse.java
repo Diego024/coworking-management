@@ -1,6 +1,6 @@
 package com.company.coworking.management.dto.response;
 
-import com.company.coworking.management.util.enums.SpaceType;
+import com.company.coworking.management.enums.SpaceType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

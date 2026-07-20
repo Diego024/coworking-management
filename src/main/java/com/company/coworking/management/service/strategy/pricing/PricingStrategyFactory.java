@@ -1,6 +1,6 @@
 package com.company.coworking.management.service.strategy.pricing;
 
-import com.company.coworking.management.util.enums.SpaceType;
+import com.company.coworking.management.enums.SpaceType;
 import org.springframework.stereotype.Component;
 
 import java.util.EnumMap;

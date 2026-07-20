@@ -1,7 +1,6 @@
 package com.company.coworking.management.security.jwt;
 
-import com.company.coworking.management.security.service.CustomUserDetailsService;
-import com.company.coworking.management.security.service.JwtService;
+import com.company.coworking.management.security.CustomUserDetailsService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

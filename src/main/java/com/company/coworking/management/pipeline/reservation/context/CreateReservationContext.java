@@ -4,7 +4,7 @@ import com.company.coworking.management.dto.request.CreateReservationRequest;
 import com.company.coworking.management.entity.Reservation;
 import com.company.coworking.management.entity.Space;
 import com.company.coworking.management.entity.User;
-import com.company.coworking.management.service.integration.payment.PaymentValidationResult;
+import com.company.coworking.management.integration.payment.dto.PaymentValidationResult;
 import lombok.Data;
 
 import java.math.BigDecimal;

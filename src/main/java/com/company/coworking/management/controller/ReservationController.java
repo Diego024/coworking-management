@@ -1,9 +1,9 @@
 package com.company.coworking.management.controller;
 
 import com.company.coworking.management.dto.request.CreateReservationRequest;
-import com.company.coworking.management.dto.response.GeneralResponse;
+import com.company.coworking.management.common.response.GeneralResponse;
 import com.company.coworking.management.dto.response.ReservationResponse;
-import com.company.coworking.management.dto.response.ResponseBuilder;
+import com.company.coworking.management.common.response.ResponseBuilder;
 import com.company.coworking.management.service.ReservationService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

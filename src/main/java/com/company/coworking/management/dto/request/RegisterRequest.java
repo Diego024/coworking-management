@@ -1,6 +1,6 @@
 package com.company.coworking.management.dto.request;
 
-import com.company.coworking.management.util.enums.Role;
+import com.company.coworking.management.enums.Role;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

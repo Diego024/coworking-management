@@ -64,8 +64,6 @@ services:
 
       PAYMENT_GATEWAY_URL: http://wiremock:8080/api/payments/process
 
-      SPRING_PROFILES_ACTIVE: dev
-
     networks:
       - coworking-network
 

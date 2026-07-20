@@ -1,7 +1,7 @@
 package com.company.coworking.management.entity;
 
 import com.company.coworking.management.common.auditing.AuditableEntity;
-import com.company.coworking.management.util.enums.Role;
+import com.company.coworking.management.enums.Role;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;

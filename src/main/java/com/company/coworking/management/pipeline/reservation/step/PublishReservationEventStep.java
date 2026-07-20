@@ -1,8 +1,8 @@
 package com.company.coworking.management.pipeline.reservation.step;
 
 import com.company.coworking.management.pipeline.reservation.context.CreateReservationContext;
-import com.company.coworking.management.service.event.ReservationConfirmedEvent;
-import com.company.coworking.management.service.integration.payment.PaymentValidationResult;
+import com.company.coworking.management.event.ReservationConfirmedEvent;
+import com.company.coworking.management.integration.payment.dto.PaymentValidationResult;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;

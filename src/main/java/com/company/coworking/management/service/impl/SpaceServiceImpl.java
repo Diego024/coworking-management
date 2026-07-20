@@ -7,7 +7,7 @@ import com.company.coworking.management.entity.Space;
 import com.company.coworking.management.exception.business.SpaceNotFoundException;
 import com.company.coworking.management.repository.SpaceRepository;
 import com.company.coworking.management.service.SpaceService;
-import com.company.coworking.management.util.mapper.SpaceMapper;
+import com.company.coworking.management.mapper.SpaceMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

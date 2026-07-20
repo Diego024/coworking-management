@@ -1,7 +1,7 @@
 package com.company.coworking.management.entity;
 
 import com.company.coworking.management.common.auditing.AuditableEntity;
-import com.company.coworking.management.util.enums.SpaceType;
+import com.company.coworking.management.enums.SpaceType;
 import jakarta.persistence.*;
 import lombok.*;
 

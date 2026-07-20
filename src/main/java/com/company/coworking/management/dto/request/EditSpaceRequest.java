@@ -1,6 +1,6 @@
 package com.company.coworking.management.dto.request;
 
-import com.company.coworking.management.util.enums.SpaceType;
+import com.company.coworking.management.enums.SpaceType;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

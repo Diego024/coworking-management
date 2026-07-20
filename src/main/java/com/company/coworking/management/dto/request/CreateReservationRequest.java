@@ -1,6 +1,6 @@
 package com.company.coworking.management.dto.request;
 
-import com.company.coworking.management.util.enums.PaymentMethod;
+import com.company.coworking.management.enums.PaymentMethod;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;

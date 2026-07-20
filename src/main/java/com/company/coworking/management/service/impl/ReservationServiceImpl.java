@@ -11,8 +11,8 @@ import com.company.coworking.management.pipeline.reservation.context.CreateReser
 import com.company.coworking.management.repository.ReservationRepository;
 import com.company.coworking.management.service.CurrentUserService;
 import com.company.coworking.management.service.ReservationService;
-import com.company.coworking.management.util.enums.ReservationStatus;
-import com.company.coworking.management.util.mapper.ReservationMapper;
+import com.company.coworking.management.enums.ReservationStatus;
+import com.company.coworking.management.mapper.ReservationMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.cache.annotation.CacheEvict;

@@ -1,4 +1,8 @@
 spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/coworking
+    username: postgres
+    password: postgres
   jpa:
     hibernate:
       ddl-auto: validate
@@ -12,3 +16,7 @@ spring:
 
   flyway:
     enabled: true
+
+integration:
+  payment-gateway:
+    url: http://wiremock:8080/api/payments/process

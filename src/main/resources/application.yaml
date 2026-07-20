@@ -2,7 +2,7 @@ spring:
   application:
     name: coworking-management
   profiles:
-    default: ${SPRING_PROFILES_ACTIVE}
+    active: prod
   main:
     banner-mode: off
   jpa:
@@ -10,15 +10,10 @@ spring:
       hibernate:
         jdbc:
           time_zone: America/El_Salvador
-  datasource:
-    url: ${DATABASE_URL}
-    username: ${DATABASE_USERNAME}
-    password: ${DATABASE_PASSWORD}
   jackson:
     time-zone: America/El_Salvador
   cache:
     type: simple
-
 
 server:
   servlet:

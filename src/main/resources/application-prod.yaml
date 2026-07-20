@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        show_sql: false
+        format_sql: true
+
+integration:
+  payment-gateway:
+    url: ${PAYMENT_GATEWAY_URL}

@@ -1,7 +1,7 @@
 package com.company.coworking.management.exception.handler;
 
-import com.company.coworking.management.dto.response.GeneralResponseWithErrors;
-import com.company.coworking.management.dto.response.ResponseBuilder;
+import com.company.coworking.management.common.response.GeneralResponseWithErrors;
+import com.company.coworking.management.common.response.ResponseBuilder;
 import com.company.coworking.management.exception.business.*;
 import jakarta.validation.ConstraintViolationException;
 import lombok.extern.log4j.Log4j2;

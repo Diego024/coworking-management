@@ -1,6 +1,6 @@
 package com.company.coworking.management.dto.response;
 
-import com.company.coworking.management.util.enums.ReservationStatus;
+import com.company.coworking.management.enums.ReservationStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

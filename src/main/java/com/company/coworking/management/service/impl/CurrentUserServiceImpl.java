@@ -3,7 +3,7 @@ package com.company.coworking.management.service.impl;
 import com.company.coworking.management.entity.User;
 import com.company.coworking.management.repository.UserRepository;
 import com.company.coworking.management.service.CurrentUserService;
-import com.company.coworking.management.util.enums.Role;
+import com.company.coworking.management.enums.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
