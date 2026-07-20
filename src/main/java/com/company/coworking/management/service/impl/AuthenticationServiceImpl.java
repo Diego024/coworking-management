@@ -4,7 +4,6 @@ import com.company.coworking.management.entity.User;
 import com.company.coworking.management.exception.business.EmailAlreadyExistsException;
 import com.company.coworking.management.util.mapper.AuthenticationMapper;
 import com.company.coworking.management.repository.UserRepository;
-import com.company.coworking.management.security.SecurityConstants;
 import com.company.coworking.management.dto.request.LoginRequest;
 import com.company.coworking.management.dto.request.RegisterRequest;
 import com.company.coworking.management.dto.response.AuthenticationResponse;
@@ -18,6 +17,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import static com.company.coworking.management.security.jwt.JwtAuthenticationFilter.TOKEN_PREFIX;
 
 @Service
 @RequiredArgsConstructor
@@ -51,7 +52,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
         return authenticationMapper.toAuthenticationResponse(
                 user.getEmail(),
-                SecurityConstants.TOKEN_PREFIX + token,
+                TOKEN_PREFIX + token,
                 jwtProperties.getExpiration()
         );
     }
@@ -77,7 +78,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
 
         return authenticationMapper.toAuthenticationResponse(
                 user.getEmail(),
-                SecurityConstants.TOKEN_PREFIX + token,
+                TOKEN_PREFIX + token,
                 jwtProperties.getExpiration()
         );
     }

@@ -8,8 +8,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 public interface SpaceService {
+    @Transactional
     SpaceResponse createSpace(CreateSpaceRequest createSpaceRequest);
 
+    @Transactional(readOnly = true)
     List<SpaceResponse> getAllSpaces();
 
     @Transactional(readOnly = true)

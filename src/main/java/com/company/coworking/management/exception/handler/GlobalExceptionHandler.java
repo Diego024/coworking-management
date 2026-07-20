@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -64,6 +65,11 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(value = SpaceNotFoundException.class)
     public ResponseEntity<GeneralResponseWithErrors> handleSpaceNotFoundException(SpaceNotFoundException e) {
+        return ResponseBuilder.buildNotFoundResponse(e.getMessage());
+    }
+
+    @ExceptionHandler(value = UsernameNotFoundException.class)
+    public ResponseEntity<GeneralResponseWithErrors> handleUsernameNotFoundException(UsernameNotFoundException e) {
         return ResponseBuilder.buildNotFoundResponse(e.getMessage());
     }
 

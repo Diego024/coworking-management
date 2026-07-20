@@ -1,6 +1,5 @@
 package com.company.coworking.management.security.jwt;
 
-import com.company.coworking.management.security.SecurityConstants;
 import com.company.coworking.management.security.service.CustomUserDetailsService;
 import com.company.coworking.management.security.service.JwtService;
 import jakarta.servlet.FilterChain;
@@ -25,6 +24,8 @@ import java.io.IOException;
 @Slf4j
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
+    public static final String TOKEN_PREFIX = "Bearer ";
+
     private final JwtService jwtService;
 
     private final CustomUserDetailsService customUserDetailsService;
@@ -34,12 +35,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
         String authorizationHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
 
-        if (authorizationHeader == null || !authorizationHeader.startsWith(SecurityConstants.TOKEN_PREFIX)) {
+        if (authorizationHeader == null || !authorizationHeader.startsWith(TOKEN_PREFIX)) {
             filterChain.doFilter(request, response);
             return;
         }
 
-        String token = authorizationHeader.substring(SecurityConstants.TOKEN_PREFIX.length());
+        String token = authorizationHeader.substring(TOKEN_PREFIX.length());
         String username = jwtService.extractUsername(token);
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
