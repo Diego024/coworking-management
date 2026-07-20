@@ -1,7 +1,9 @@
 services:
+
   postgres:
     image: postgres:16-alpine
     container_name: coworking-postgres
+
     restart: unless-stopped
 
     environment:
@@ -16,7 +18,7 @@ services:
       - postgres-data:/var/lib/postgresql/data
 
     healthcheck:
-      test: [ "CMD-SHELL", "pg_isready -U postgres -d coworking" ]
+      test: ["CMD-SHELL", "pg_isready -U postgres -d coworking"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -27,11 +29,45 @@ services:
   wiremock:
     image: wiremock/wiremock:3.9.1
     container_name: coworking-wiremock
+
     ports:
       - "8081:8080"
+
     volumes:
       - ./wiremock/mappings:/home/wiremock/mappings
+
     command: --global-response-templating
+
+    networks:
+      - coworking-network
+
+  coworking-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    container_name: coworking-api
+
+    depends_on:
+      postgres:
+        condition: service_healthy
+      wiremock:
+        condition: service_started
+
+    ports:
+      - "8080:8080"
+
+    environment:
+      DATABASE_URL: jdbc:postgresql://postgres:5432/coworking
+      DATABASE_USERNAME: postgres
+      DATABASE_PASSWORD: postgres
+
+      PAYMENT_GATEWAY_URL: http://wiremock:8080/api/payments/process
+
+      SPRING_PROFILES_ACTIVE: dev
+
+    networks:
+      - coworking-network
 
 volumes:
   postgres-data:

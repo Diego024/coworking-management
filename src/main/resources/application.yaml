@@ -2,7 +2,7 @@ spring:
   application:
     name: coworking-management
   profiles:
-    default: dev
+    default: ${SPRING_PROFILES_ACTIVE}
   main:
     banner-mode: off
   jpa:
@@ -10,6 +10,10 @@ spring:
       hibernate:
         jdbc:
           time_zone: America/El_Salvador
+  datasource:
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
   jackson:
     time-zone: America/El_Salvador
   cache:
@@ -18,7 +22,7 @@ spring:
 
 server:
   servlet:
-    context-path: /api
+    context-path: /coworking-api
 
 springdoc:
   api-docs:
@@ -70,9 +74,9 @@ resilience4j:
 
 security:
   jwt:
-    secret: 1c9a14f7c25e69c73f0ab4d7bc5ab83b0b1cb4fcb5eb8d08f9e4f98bbd9c0d6b
+    secret: grCmBC3sfP46z6LpI2UZsGJXMFiX9XzOIbIUIhktmBMRYHpYuoaXrI4LTMspBFFn
     expiration: 86400000
 
 integration:
   payment-gateway:
-    url: "http://localhost:8081/api/payments/process"
+    url: ${PAYMENT_GATEWAY_URL}
