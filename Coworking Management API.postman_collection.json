@@ -1,0 +1,497 @@
+{
+  "info": {
+    "_postman_id": "5d83de63-7dc8-4d3d-9b50-191b4e7d3d43",
+    "name": "Coworking Management API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "11803833"
+  },
+  "item": [
+    {
+      "name": "Authenticación",
+      "item": [
+        {
+          "name": "/auth/login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"diego.admin@gmail.com\",\r\n    \"password\": \"hola1234\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/auth/login",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/auth/register",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"diego.user@gmail.com\",\r\n    \"password\": \"hola1234\",\r\n    \"role\": \"USER\",\r\n    \"firstName\": \"Diego\",\r\n    \"lastName\": \"Rosa\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/auth/register",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "auth": {
+        "type": "noauth"
+      },
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {},
+            "exec": [
+              ""
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {},
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Espacios",
+      "item": [
+        {
+          "name": "/space",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/space",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "space"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/space/{id}",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/space/10",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "space",
+                "10"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/space",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Sala Principal\",\r\n    \"spaceType\": \"MEETING_ROOM\",\r\n    \"capacity\": 8,\r\n    \"location\": \"Edificio General\",\r\n    \"hourlyRate\": 15.0\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/space",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "space"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/space",
+          "request": {
+            "method": "PUT",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Sala Principal Administrativa\",\r\n    \"spaceType\": \"MEETING_ROOM\",\r\n    \"capacity\": 8,\r\n    \"location\": \"Edificio General\",\r\n    \"hourlyRate\": 25.0\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/space/1",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "space",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/space/{id}",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": ""
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/space/10",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "space",
+                "10"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Reservas",
+      "item": [
+        {
+          "name": "/reservation",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/reservation",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "reservation"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/reservation/all",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/reservation/all",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "reservation",
+                "all"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/reservation",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"spaceId\": 11,\r\n    \"paymentMethod\": \"CREDIT_CARD\",\r\n    \"startTime\": \"2026-07-23 12:00\",\r\n    \"endTime\": \"2026-07-23 13:00\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/reservation",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "reservation"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/reservation/{reservationId}/cancel",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/reservation/62/cancel",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "reservation",
+                "62",
+                "cancel"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Reportes",
+      "item": [
+        {
+          "name": "Espacios",
+          "item": [
+            {
+              "name": "/reports/spaces/occupancy",
+              "request": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{BASE_URL}}/reports/spaces/occupancy?startDate=2026-07-22T00:00:00&endDate=2026-07-22T19:59:59",
+                  "host": [
+                    "{{BASE_URL}}"
+                  ],
+                  "path": [
+                    "reports",
+                    "spaces",
+                    "occupancy"
+                  ],
+                  "query": [
+                    {
+                      "key": "startDate",
+                      "value": "2026-07-22T00:00:00"
+                    },
+                    {
+                      "key": "endDate",
+                      "value": "2026-07-22T19:59:59"
+                    }
+                  ]
+                }
+              },
+              "response": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Actuator",
+      "item": [
+        {
+          "name": "/actuator/heath",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/actuator/health",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "actuator",
+                "health"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/actuator/info",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/actuator/info",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "actuator",
+                "info"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/actuator/metrics",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/actuator/metrics",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "actuator",
+                "metrics"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "/actuator/circuitbreakers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/actuator/circuitbreakers",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "actuator",
+                "circuitbreakers"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "auth": {
+        "type": "noauth"
+      },
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {},
+            "exec": [
+              ""
+            ]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {},
+            "exec": [
+              ""
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{JWT}}",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "BASE_URL",
+      "value": "http://localhost:8080/coworking-api"
+    },
+    {
+      "key": "JWT",
+      "value": ""
+    }
+  ]
+}
